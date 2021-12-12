@@ -109,6 +109,7 @@ end
 
 // Get answer from user through GUI
 function void ask(JDialog frame, Question question) {
+	
 	// Remove previous content of frame
 	frame.getContentPane().removeAll();
 	
@@ -120,35 +121,28 @@ function void ask(JDialog frame, Question question) {
 		JRadioButton[] buttons = new JRadioButton[question.getAnswers().length];
 			
 		// JLabel stores question text
-		JLabel questionLabel = new JLabel(question.getQuestion());
-		questionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		questionLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 10, 0));
+		JLabel questionLabel = new JLabel("<html>"+question.getQuestion()+"</html>");
 		panel.add(questionLabel);
 		
 		for(int i = 0; i < question.getAnswers().length; i++) {
-			buttons[i] = new JRadioButton(question.getAnswers()[i]);
-			buttons[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+			buttons[i] = new JRadioButton("<html>"+question.getAnswers()[i]+"</html>");
 			buttons[i].setActionCommand(question.getAnswers()[i]);
-			buttons[i].setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 			panel.add(buttons[i]);
 			group.add(buttons[i]);
 		}
 		buttons[0].setSelected(true);
-		buttons[buttons.length - 1].setBorder(BorderFactory.createEmptyBorder(10,0,30,0));
 	}
 	
 	// JButton as submit button
 	JButton submitButton = new JButton();
 	if(question.getAnswers() == null) {
-		JLabel emptyLabel = new JLabel();
-		emptyLabel.setBorder(BorderFactory.createEmptyBorder(150, 0, 0, 0));
-		panel.add(emptyLabel);
+		JLabel endLabel = new JLabel("<html>"+question.getQuestion()+"</html>");
+		panel.add(endLabel);
 		submitButton.setText("The End");
 	} else {
 		submitButton.setText("Next");
 	}
 	
-	submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 	panel.add(submitButton);
 	
 	// Get selected radio button on submitButton click
@@ -164,8 +158,12 @@ function void ask(JDialog frame, Question question) {
 		}
 	});
 	
-	frame.setContentPane(panel);
-	frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+	
+	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+	JPanel newPanel = new JPanel();
+	newPanel.add(panel);
+	
+	frame.setContentPane(newPanel);
 	frame.validate();
     frame.repaint();
 	frame.setVisible(true);	
