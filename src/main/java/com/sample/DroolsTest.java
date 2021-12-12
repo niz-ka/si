@@ -3,10 +3,10 @@ package com.sample;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import javax.swing.JDialog;
+import java.awt.*;
+import java.awt.event.*;
 
-/**
- * This is a sample class to launch a rule.
- */
 public class DroolsTest {
 
     public static final void main(String[] args) {
@@ -15,43 +15,28 @@ public class DroolsTest {
 	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
-
-            // go !
-            Message message = new Message();
-            message.setMessage("Hello World");
-            message.setStatus(Message.HELLO);
-            kSession.insert(message);
+        	
+        	// Create global frame
+        	JDialog frame = new JDialog();
+        	frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        	frame.setSize(800, 400);
+        	frame.setLocationRelativeTo(null);
+        	
+        	// Close application after frame close
+        	frame.addWindowListener(new WindowAdapter() { 
+        		@Override public void windowClosing(WindowEvent e) { 
+        			System.exit(0);
+        		}
+        	});
+        	
+        	kSession.setGlobal("frame", frame);
+        	
             kSession.fireAllRules();
         } catch (Throwable t) {
             t.printStackTrace();
         }
     }
-
-    public static class Message {
-
-        public static final int HELLO = 0;
-        public static final int GOODBYE = 1;
-
-        private String message;
-
-        private int status;
-
-        public String getMessage() {
-            return this.message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
-
-        public int getStatus() {
-            return this.status;
-        }
-
-        public void setStatus(int status) {
-            this.status = status;
-        }
-
-    }
+    
+    
 
 }

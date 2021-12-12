@@ -1,20 +1,177 @@
-package com.sample.rules
- 
-import com.sample.DroolsTest.Message;
- 
-rule "Hello World"
-    when
-        m : Message( status == Message.HELLO, myMessage : message )
-    then
-        System.out.println( myMessage );
-        m.setMessage( "Goodbye cruel world" );
-        m.setStatus( Message.GOODBYE );
-        update( m );
+package com.sample.rules;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import org.kie.api.runtime.KieRuntime;
+
+// Global frame
+global JDialog frame;
+
+declare Question
+   question : String
+   answers : String[]
+   choice : String
 end
 
-rule "GoodBye"
-    when
-        Message( status == Message.GOODBYE, myMessage : message )
-    then
-        System.out.println( myMessage );
+rule "Start"
+	when
+	then
+		Question question = new Question(
+			"Which option?", 
+			new String[]{"First", "Second", "Third", "Fourth"}, 
+			null
+		);
+		ask(frame, question);
+		insert(question);
 end
+
+rule "Which option? - First"
+	when
+		Question(question == "Which option?", choice == "First")
+	then
+		Question question = new Question(
+			"Are you about to snap under the crushing weight of constant whining?", 
+			new String[]{
+				"Actually, he never brought it up. I was just thinking...",
+				"She just won't stop. MAKE IT STOP.",
+				"Yes This is all my kid talks about. I am slowly dying."
+				}, 
+			null
+		);
+		ask(frame, question);
+		insert(question);
+end
+
+rule "Which option? - Second"
+	when
+		Question(question == "Which option?", choice == "Second")
+	then
+		Question question = new Question(
+			"Do you mind if your kid never looks up from her phone again?", 
+			new String[]{
+				"Actually, I have strict rules about the amount of time she will spend on her phone",
+				"One sec, I'm just finishing a game of Bejeweled."
+				}, 
+			null
+		);
+		ask(frame, question);
+		insert(question);
+end
+
+rule "Which option? - Third"
+	when
+		Question(question == "Which option?", choice == "Third")
+	then
+		Question question = new Question(
+			"How will you feel when your kid drops and smashes the phone on the first day he has hit?", 
+			new String[]{
+				"Now it looks like my phone. Neat!",
+				"Excuse me while I curl up in a ball and weep.",
+				"Fine. I am a husk of my former self. I feel nothing."
+				}, 
+			null
+		);
+		ask(frame, question);
+		insert(question);
+end
+
+rule "Which option? - Fourth"
+	when
+		Question(question == "Which option?", choice == "Fourth")
+	then
+		Question question = new Question(
+			"Just the one phone?", 
+			new String[]{
+				"Dude. This isn't The Wire. How many phones does she need?"
+				}, 
+			null
+		);
+		ask(frame, question);
+		insert(question);
+end
+
+// This is the end of first level of chart
+
+// END RULE! - To make end rule just send "null" as possible answers
+rule "Are you about to snap under the crushing weight of constant whining? - Actually, he never brought it up. I was just thinking..."
+	when
+		Question(question == "Are you about to snap under the crushing weight of constant whining?", choice == "Actually, he never brought it up. I was just thinking...")
+	then
+		Question question = new Question(
+			"DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year", 
+			null, 
+			null
+		);
+		ask(frame, question);
+		insert(question);
+end
+
+
+// Get answer from user through GUI
+function void ask(JDialog frame, Question question) {
+	// Remove previous content of frame
+	frame.getContentPane().removeAll();
+	
+	JPanel panel = new JPanel();
+	ButtonGroup group = new ButtonGroup();
+	
+	if(question.getAnswers() != null) {
+		// JRadioButtons store possible answers
+		JRadioButton[] buttons = new JRadioButton[question.getAnswers().length];
+			
+		// JLabel stores question text
+		JLabel questionLabel = new JLabel(question.getQuestion());
+		questionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		questionLabel.setBorder(BorderFactory.createEmptyBorder(30, 0, 10, 0));
+		panel.add(questionLabel);
+		
+		for(int i = 0; i < question.getAnswers().length; i++) {
+			buttons[i] = new JRadioButton(question.getAnswers()[i]);
+			buttons[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+			buttons[i].setActionCommand(question.getAnswers()[i]);
+			buttons[i].setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
+			panel.add(buttons[i]);
+			group.add(buttons[i]);
+		}
+		buttons[0].setSelected(true);
+		buttons[buttons.length - 1].setBorder(BorderFactory.createEmptyBorder(10,0,30,0));
+	}
+	
+	// JButton as submit button
+	JButton submitButton = new JButton();
+	if(question.getAnswers() == null) {
+		JLabel emptyLabel = new JLabel();
+		emptyLabel.setBorder(BorderFactory.createEmptyBorder(150, 0, 0, 0));
+		panel.add(emptyLabel);
+		submitButton.setText("The End");
+	} else {
+		submitButton.setText("Next");
+	}
+	
+	submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+	panel.add(submitButton);
+	
+	// Get selected radio button on submitButton click
+	submitButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(question.getAnswers() == null ) {
+				System.exit(0);
+			}
+			question.setChoice(group.getSelection().getActionCommand());
+			// Close frame
+			frame.dispose();
+		}
+	});
+	
+	frame.setContentPane(panel);
+	frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+	frame.validate();
+    frame.repaint();
+	frame.setVisible(true);	
+}
+
+
+
+
+
