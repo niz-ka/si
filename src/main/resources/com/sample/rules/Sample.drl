@@ -4,9 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import org.kie.api.runtime.KieRuntime;
 
-// Global frame
-global JDialog frame;
-
 declare Question
    question : String
    answers : String[]
@@ -21,7 +18,7 @@ rule "Start"
 			new String[]{"First", "Second", "Third", "Fourth"}, 
 			null
 		);
-		ask(frame, question);
+		ask(question);
 		insert(question);
 end
 
@@ -38,7 +35,7 @@ rule "Which option? - First"
 				}, 
 			null
 		);
-		ask(frame, question);
+		ask(question);
 		insert(question);
 end
 
@@ -54,7 +51,7 @@ rule "Which option? - Second"
 				}, 
 			null
 		);
-		ask(frame, question);
+		ask(question);
 		insert(question);
 end
 
@@ -71,7 +68,7 @@ rule "Which option? - Third"
 				}, 
 			null
 		);
-		ask(frame, question);
+		ask(question);
 		insert(question);
 end
 
@@ -86,7 +83,7 @@ rule "Which option? - Fourth"
 				}, 
 			null
 		);
-		ask(frame, question);
+		ask(question);
 		insert(question);
 end
 
@@ -102,10 +99,18 @@ end
 
 
 // Get answer from user through GUI
-function void ask(JDialog frame, Question question) {
+function void ask(Question question) {
 	
-	// Remove previous content of frame
-	frame.getContentPane().removeAll();
+	// Create frame
+    JDialog frame = new JDialog();
+    frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);   
+        	
+	// Close application after frame close
+	frame.addWindowListener(new WindowAdapter() { 
+		@Override public void windowClosing(WindowEvent e) { 
+			System.exit(0);
+		}
+	});
 	
 	JPanel panel = new JPanel();
 	ButtonGroup group = new ButtonGroup();
@@ -146,10 +151,10 @@ function void ask(JDialog frame, Question question) {
 	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 	
-	JPanel newPanel = new JPanel();
-	newPanel.add(panel);
+	JPanel outerPanel = new JPanel();
+	outerPanel.add(panel);
 	
-	frame.setContentPane(newPanel);
+	frame.setContentPane(outerPanel);
 	frame.validate();
     frame.repaint();
     frame.pack();
