@@ -92,7 +92,7 @@ end
 
 // This is the end of first level of chart
 
-// END RULE! - To make end rule just send "null" as possible answers
+// END RULE!
 rule "Are you about to snap under the crushing weight of constant whining? - Actually, he never brought it up. I was just thinking..."
 	when
 		Question(question == "Are you about to snap under the crushing weight of constant whining?", choice == "Actually, he never brought it up. I was just thinking...")
@@ -121,22 +121,26 @@ function void ask(JDialog frame, Question question) {
 		JRadioButton[] buttons = new JRadioButton[question.getAnswers().length];
 			
 		// JLabel stores question text
-		JLabel questionLabel = new JLabel("<html>"+question.getQuestion()+"</html>");
+		JLabel questionLabel = new JLabel(question.getQuestion());
+		questionLabel.setBorder(BorderFactory.createEmptyBorder(0,0,15,0)); 
 		panel.add(questionLabel);
 		
 		for(int i = 0; i < question.getAnswers().length; i++) {
-			buttons[i] = new JRadioButton("<html>"+question.getAnswers()[i]+"</html>");
+			buttons[i] = new JRadioButton(question.getAnswers()[i]);
 			buttons[i].setActionCommand(question.getAnswers()[i]);
+			buttons[i].setBorder(BorderFactory.createEmptyBorder(5,0,5,0)); 
 			panel.add(buttons[i]);
 			group.add(buttons[i]);
 		}
 		buttons[0].setSelected(true);
+		buttons[buttons.length - 1].setBorder(BorderFactory.createEmptyBorder(5,0,15,0)); 
 	}
 	
 	// JButton as submit button
 	JButton submitButton = new JButton();
 	if(question.getAnswers() == null) {
-		JLabel endLabel = new JLabel("<html>"+question.getQuestion()+"</html>");
+		JLabel endLabel = new JLabel(question.getQuestion());
+		endLabel.setBorder(BorderFactory.createEmptyBorder(0,0,15,0));
 		panel.add(endLabel);
 		submitButton.setText("The End");
 	} else {
@@ -160,13 +164,17 @@ function void ask(JDialog frame, Question question) {
 	
 	
 	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+	
 	JPanel newPanel = new JPanel();
 	newPanel.add(panel);
 	
 	frame.setContentPane(newPanel);
 	frame.validate();
     frame.repaint();
-	frame.setVisible(true);	
+    frame.pack();
+    frame.setLocationRelativeTo(null);
+    frame.setVisible(true);	
 }
 
 

@@ -19,8 +19,6 @@ public class DroolsTest {
         	// Create global frame
         	JDialog frame = new JDialog();
         	frame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-        	frame.setSize(800, 400);
-        	frame.setLocationRelativeTo(null);
         	
         	// Close application after frame close
         	frame.addWindowListener(new WindowAdapter() { 
