@@ -97,13 +97,7 @@ rule "Are you about to snap under the crushing weight of constant whining? - Act
 	when
 		Question(question == "Are you about to snap under the crushing weight of constant whining?", choice == "Actually, he never brought it up. I was just thinking...")
 	then
-		Question question = new Question(
-			"DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year", 
-			null, 
-			null
-		);
-		ask(frame, question);
-		insert(question);
+		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year");
 end
 
 
@@ -116,52 +110,38 @@ function void ask(JDialog frame, Question question) {
 	JPanel panel = new JPanel();
 	ButtonGroup group = new ButtonGroup();
 	
-	if(question.getAnswers() != null) {
-		// JRadioButtons store possible answers
-		JRadioButton[] buttons = new JRadioButton[question.getAnswers().length];
-			
-		// JLabel stores question text
-		JLabel questionLabel = new JLabel(question.getQuestion());
-		questionLabel.setBorder(BorderFactory.createEmptyBorder(0,0,15,0)); 
-		panel.add(questionLabel);
+	// JRadioButtons store possible answers
+	JRadioButton[] buttons = new JRadioButton[question.getAnswers().length];
 		
-		for(int i = 0; i < question.getAnswers().length; i++) {
-			buttons[i] = new JRadioButton(question.getAnswers()[i]);
-			buttons[i].setActionCommand(question.getAnswers()[i]);
-			buttons[i].setBorder(BorderFactory.createEmptyBorder(5,0,5,0)); 
-			panel.add(buttons[i]);
-			group.add(buttons[i]);
-		}
-		buttons[0].setSelected(true);
-		buttons[buttons.length - 1].setBorder(BorderFactory.createEmptyBorder(5,0,15,0)); 
+	// JLabel stores question text
+	JLabel questionLabel = new JLabel(question.getQuestion());
+	questionLabel.setBorder(BorderFactory.createEmptyBorder(0,0,15,0)); 
+	panel.add(questionLabel);
+	
+	for(int i = 0; i < question.getAnswers().length; i++) {
+		buttons[i] = new JRadioButton(question.getAnswers()[i]);
+		buttons[i].setActionCommand(question.getAnswers()[i]);
+		buttons[i].setBorder(BorderFactory.createEmptyBorder(5,0,5,0)); 
+		panel.add(buttons[i]);
+		group.add(buttons[i]);
 	}
+	buttons[0].setSelected(true);
+	buttons[buttons.length - 1].setBorder(BorderFactory.createEmptyBorder(5,0,15,0)); 
 	
 	// JButton as submit button
 	JButton submitButton = new JButton();
-	if(question.getAnswers() == null) {
-		JLabel endLabel = new JLabel(question.getQuestion());
-		endLabel.setBorder(BorderFactory.createEmptyBorder(0,0,15,0));
-		panel.add(endLabel);
-		submitButton.setText("The End");
-	} else {
-		submitButton.setText("Next");
-	}
-	
+	submitButton.setText("Next");
 	panel.add(submitButton);
 	
 	// Get selected radio button on submitButton click
 	submitButton.addActionListener(new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(question.getAnswers() == null ) {
-				System.exit(0);
-			}
 			question.setChoice(group.getSelection().getActionCommand());
 			// Close frame
 			frame.dispose();
 		}
 	});
-	
 	
 	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
@@ -177,7 +157,10 @@ function void ask(JDialog frame, Question question) {
     frame.setVisible(true);	
 }
 
-
+function void showResult(String result) {
+	JOptionPane.showMessageDialog(new JFrame(), result, "Your result", JOptionPane.INFORMATION_MESSAGE);
+	System.exit(0); 
+}
 
 
 
