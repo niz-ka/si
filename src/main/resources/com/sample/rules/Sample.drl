@@ -22,7 +22,7 @@ rule "Start"
 		insert(question);
 end
 
-rule "Which option? - First"
+rule "Are you about to snap under the crushing weight of constant whining? - Which option? - First"
 	when
 		Question(question == "Which option?", choice == "First")
 	then
@@ -31,7 +31,7 @@ rule "Which option? - First"
 			new String[]{
 				"Actually, he never brought it up. I was just thinking...",
 				"She just won't stop. MAKE IT STOP.",
-				"Yes This is all my kid talks about. I am slowly dying."
+				"Yes. This is all my kid talks about. I am slowly dying."
 				}, 
 			null
 		);
@@ -39,14 +39,14 @@ rule "Which option? - First"
 		insert(question);
 end
 
-rule "Which option? - Second"
+rule "Do you mind if your kid never looks up from her phone again? - Which option? - Second"
 	when
 		Question(question == "Which option?", choice == "Second")
 	then
 		Question question = new Question(
 			"Do you mind if your kid never looks up from her phone again?", 
 			new String[]{
-				"Actually, I have strict rules about the amount of time she will spend on her phone",
+				"Actually, I have strict rules about the amount of time she will spend on her phone.",
 				"One sec, I'm just finishing a game of Bejeweled."
 				}, 
 			null
@@ -55,12 +55,12 @@ rule "Which option? - Second"
 		insert(question);
 end
 
-rule "Which option? - Third"
+rule "How will you feel when your kid drops and smashes the phone on the first day he has it? - Which option? - Third"
 	when
 		Question(question == "Which option?", choice == "Third")
 	then
 		Question question = new Question(
-			"How will you feel when your kid drops and smashes the phone on the first day he has hit?", 
+			"How will you feel when your kid drops and smashes the phone on the first day he has it?", 
 			new String[]{
 				"Now it looks like my phone. Neat!",
 				"Excuse me while I curl up in a ball and weep.",
@@ -72,7 +72,7 @@ rule "Which option? - Third"
 		insert(question);
 end
 
-rule "Which option? - Fourth"
+rule "Just the one phone? - Which option? - Fourth"
 	when
 		Question(question == "Which option?", choice == "Fourth")
 	then
@@ -87,14 +87,503 @@ rule "Which option? - Fourth"
 		insert(question);
 end
 
-// This is the end of first level of chart
 
-// END RULE!
-rule "Are you about to snap under the crushing weight of constant whining? - Actually, he never brought it up. I was just thinking..."
+// End rule
+rule "END - Are you about to snap under the crushing weight of constant whining? - Actually, he never brought it up. I was just thinking..."
 	when
 		Question(question == "Are you about to snap under the crushing weight of constant whining?", choice == "Actually, he never brought it up. I was just thinking...")
 	then
-		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year");
+		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year.");
+end
+
+
+rule "Are you bankrolling this entire enterprise, player? - Are you about to snap under the crushing weight of constant whining? - She just won't stop. MAKE IT STOP."
+	when
+		Question(question == "Are you about to snap under the crushing weight of constant whining?", choice == "She just won't stop. MAKE IT STOP.")
+	then
+		Question question = new Question(
+			"Are you bankrolling this entire enterprise, player?", 
+			new String[]{
+				"They pay half, I pay half. JK, pay for most of it.",
+				"Yes. Against all scientific odds, I am made of money.",
+				"No, my kid's take-home pay is higher than mine, so he's paying for all of it."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Do you and your kid know about bullying? - Are you about to snap under the crushing weight of constant whining? - Yes. This is all my kid talks about. I am slowly dying."
+	when
+		Question(question == "Are you about to snap under the crushing weight of constant whining?", choice == "Yes. This is all my kid talks about. I am slowly dying.")
+	then
+		Question question = new Question(
+			"Do you and your kid know about bullying?", 
+			new String[]{
+				"Um, yeah. Doi."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+
+rule "HA HA good one. Do your kids always follow your rules? - Do you mind if your kid never looks up from her phone again? - Actually, I have strict rules about the amount of time she will spend on her phone."
+	when
+		Question(question == "Do you mind if your kid never looks up from her phone again?", choice == "Actually, I have strict rules about the amount of time she will spend on her phone.")
+	then
+		Question question = new Question(
+			"HA HA good one. Do your kids always follow your rules?", 
+			new String[]{
+				"HELL YEAH. They better.",
+				"Of course. They are my sweet angels <3."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Can you handle him losing his phone like, LITERALLY everywhere? - Do you mind if your kid never looks up from her phone again? - One sec, I'm just finishing a game of Bejeweled."
+	when
+		Question(question == "Do you mind if your kid never looks up from her phone again?", choice == "One sec, I'm just finishing a game of Bejeweled.")
+	then
+		Question question = new Question(
+			"Can you handle him losing his phone like, LITERALLY everywhere?", 
+			new String[]{
+				"Hang on. I can't find my phone. Can you call it?",
+				"Nope. SHUT IT DOWN."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Will you pony up and get him another phone? - How will you feel when your kid drops and smashes the phone on the first day he has it? - Now it looks like my phone. Neat!"
+	when
+		Question(question == "How will you feel when your kid drops and smashes the phone on the first day he has it?", choice == "Now it looks like my phone. Neat!")
+	then
+		Question question = new Question(
+			"Will you pony up and get him another phone?", 
+			new String[]{
+				"Yes, but he will work it off with hard manual labour around the house until the end of days.",
+				"What? NO. Get a job, you mooch.",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Will you pony up and get him another phone? - How will you feel when your kid drops and smashes the phone on the first day he has it? - Excuse me while I curl up in a ball and weep."
+	when
+		Question(question == "How will you feel when your kid drops and smashes the phone on the first day he has it?", choice == "Excuse me while I curl up in a ball and weep.")
+	then
+		Question question = new Question(
+			"Will you pony up and get him another phone?", 
+			new String[]{
+				"Yes, but he will work it off with hard manual labour around the house until the end of days.",
+				"What? NO. Get a job, you mooch.",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Will you pony up and get him another phone? - How will you feel when your kid drops and smashes the phone on the first day he has it? - Fine. I am a husk of my former self. I feel nothing."
+	when
+		Question(question == "How will you feel when your kid drops and smashes the phone on the first day he has it?", choice == "Fine. I am a husk of my former self. I feel nothing.")
+	then
+		Question question = new Question(
+			"Will you pony up and get him another phone?", 
+			new String[]{
+				"Yes, but he will work it off with hard manual labour around the house until the end of days.",
+				"What? NO. Get a job, you mooch.",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Mmm-hmm. What will you do next year when she wants a new phone? - Just the one phone? - Dude. This isn't The Wire. How many phones does she need?"
+	when
+		Question(question == "Just the one phone?", choice == "Dude. This isn't The Wire. How many phones does she need?")
+	then
+		Question question = new Question(
+			"Mmm-hmm. What will you do next year when she wants a new phone?", 
+			new String[]{
+				"I will tell the story of how we used to use land lines. And make her clean out the garage.",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'? - Are you bankrolling this entire enterprise, player? - They pay half, I pay half. JK, pay for most of it."
+	when
+		Question(question == "Are you bankrolling this entire enterprise, player?", choice == "They pay half, I pay half. JK, pay for most of it.")
+	then
+		Question question = new Question(
+			"Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'?", 
+			new String[]{
+				"She will. I mentioned it twice, so I think she gets it.",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'? - Are you bankrolling this entire enterprise, player? - Yes. Against all scientific odds, I am made of money."
+	when
+		Question(question == "Are you bankrolling this entire enterprise, player?", choice == "Yes. Against all scientific odds, I am made of money.")
+	then
+		Question question = new Question(
+			"Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'?",  
+			new String[]{
+				"She will. I mentioned it twice, so I think she gets it.",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+// End rule
+rule "END - Are you bankrolling this entire enterprise, player? - No, my kid's take-home pay is higher than mine, so he's paying for all of it."
+	when
+		Question(question == "Are you bankrolling this entire enterprise, player?", choice == "No, my kid's take-home pay is higher than mine, so he's paying for all of it.")
+	then
+		showResult("WHY ARE YOU EVEN ASKING? Get a phone, live your life and savour this beautiful time together.");
+end
+
+rule "Are you being bulled right now? - Do you and your kid know about bullying? - Um, yeah. Doi."
+	when
+		Question(question == "Do you and your kid know about bullying?", choice == "Um, yeah. Doi.")
+	then
+		Question question = new Question(
+			"Are you being bulled right now?", 
+			new String[]{
+				"Yes, Hold me.",
+				"No more then usual."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Do you think she will answer your urgent calls and text right away / quickly / ever? - HA HA good one. Do your kids always follow your rules? - HELL YEAH. They better."
+	when
+		Question(question == "HA HA good one. Do your kids always follow your rules?", choice == "HELL YEAH. They better.")
+	then
+		Question question = new Question(
+			"Do you think she will answer your urgent calls and text right away / quickly / ever?", 
+			new String[]{
+				"No. It's like I'm invisible. Can you see me?",
+				"I found this cell phone agreement online. She signed it, so I think we're good."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Do you have a HUMAN child? - HA HA good one. Do your kids always follow your rules? - Of course. They are my sweet angels <3."
+	when
+		Question(question == "HA HA good one. Do your kids always follow your rules?", choice == "Of course. They are my sweet angels <3.")
+	then
+		Question question = new Question(
+			"Do you have a HUMAN child?", 
+			new String[]{
+				"Kinda? I have a robot I built in my basement. I named him Kevin."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Are you seriously shocked that he lost his phone? - Can you handle him losing his phone like, LITERALLY everywhere? - Hang on. I can't find my phone. Can you call it?"
+	when
+		Question(question == "Can you handle him losing his phone like, LITERALLY everywhere?", choice == "Hang on. I can't find my phone. Can you call it?")
+	then
+		Question question = new Question(
+			"Are you seriously shocked that he lost his phone?", 
+			new String[]{
+				"I guess not. Just leave me alone and let me drink.",
+				"This is my first day with my kid. We're still getting to know each other."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Are you seriously shocked that he lost his phone? - Can you handle him losing his phone like, LITERALLY everywhere? - Nope. SHUT IT DOWN."
+	when
+		Question(question == "Can you handle him losing his phone like, LITERALLY everywhere?", choice == "Nope. SHUT IT DOWN.")
+	then
+		Question question = new Question(
+			"Are you seriously shocked that he lost his phone?", 
+			new String[]{
+				"I guess not. Just leave me alone and let me drink.",
+				"This is my first day with my kid. We're still getting to know each other."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case? - Will you pony up and get him another phone? - Yes, but he will work it off with hard manual labour around the house until the end of days."
+	when
+		Question(question == "Will you pony up and get him another phone?", choice == "Yes, but he will work it off with hard manual labour around the house until the end of days.")
+	then
+		Question question = new Question(
+			"Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case?", 
+			new String[]{
+				"Is there an unbreakable case I can shove my kid into?",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+// End rule
+rule "END - Will you pony up and get him another phone? - What? NO. Get a job, you mooch."
+	when
+		Question(question == "Will you pony up and get him another phone?", choice == "What? NO. Get a job, you mooch.")
+	then
+		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year.");
+end
+
+
+// End rule
+rule "END - Will you pony up and get him another phone? - Whatever. I'm a human ATM."
+	when
+		Question(question == "Will you pony up and get him another phone?", choice == "Whatever. I'm a human ATM.")
+	then
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+end
+
+
+rule "Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case? - Mmm-hmm. What will you do next year when she wants a new phone? - I will tell the story of how we used to use land lines. And make her clean out the garage."
+	when
+		Question(question == "Mmm-hmm. What will you do next year when she wants a new phone?", choice == "I will tell the story of how we used to use land lines. And make her clean out the garage.")
+	then
+		Question question = new Question(
+			"Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case?", 
+			new String[]{
+				"Is there an unbreakable case I can shove my kid into?",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+// End rule
+rule "END - Mmm-hmm. What will you do next year when she wants a new phone? - Whatever. I'm a human ATM."
+	when
+		Question(question == "Mmm-hmm. What will you do next year when she wants a new phone?", choice == "Whatever. I'm a human ATM.")
+	then
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+end
+
+
+rule "Do you have a HUMAN child? - Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'?  - She will. I mentioned it twice, so I think she gets it."
+	when
+		Question(question == "Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'?", choice == "She will. I mentioned it twice, so I think she gets it.")
+	then
+		Question question = new Question(
+			"Do you have a HUMAN child?", 
+			new String[]{
+				"Kinda? I have a robot I built in my basement. I named him Kevin."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+// End rule
+rule "END - Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'? - Whatever. I'm a human ATM."
+	when
+		Question(question == "Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'?", choice == "Whatever. I'm a human ATM.")
+	then
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+end
+
+
+rule "Can you handle him losing his phone like, LITERALLY everywhere? - Do you think she will answer your urgent calls and text right away / quickly / ever? - No. It's like I'm invisible. Can you see me?"
+	when
+		Question(question == "Do you think she will answer your urgent calls and text right away / quickly / ever?", choice == "No. It's like I'm invisible. Can you see me?")
+	then
+		Question question = new Question(
+			"Can you handle him losing his phone like, LITERALLY everywhere?", 
+			new String[]{
+				"Hang on. I can't find my phone. Can you call it?",
+				"Nope. SHUT IT DOWN."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "HA HA good one. Do your kids always follow your rules? - Do you think she will answer your urgent calls and text right away / quickly / ever? - I found this cell phone agreement online. She signed it, so I think we're good."
+	when
+		Question(question == "Do you think she will answer your urgent calls and text right away / quickly / ever?", choice == "I found this cell phone agreement online. She signed it, so I think we're good.")
+	then
+		Question question = new Question(
+			"HA HA good one. Do your kids always follow your rules?", 
+			new String[]{
+				"HELL YEAH. They better.",
+				"Of course. They are my sweet angels <3."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+rule "Will you pony up and get him another phone? - Are you seriously shocked that he lost his phone? - I guess not. Just leave me alone and let me drink."
+	when
+		Question(question == "Are you seriously shocked that he lost his phone? ", choice == "I guess not. Just leave me alone and let me drink.")
+	then
+		Question question = new Question(
+			"Will you pony up and get him another phone?", 
+			new String[]{
+				"Yes, but he will work it off with hard manual labour around the house until the end of days.",
+				"What? NO. Get a job, you mooch.",
+				"Whatever. I'm a human ATM."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+// End rule
+rule "END - Do you have a HUMAN child? - Kinda? I have a robot I built in my basement. I named him Kevin."
+	when
+		Question(question == "Do you have a HUMAN child?", choice == "Kinda? I have a robot I built in my basement. I named him Kevin.")
+	then
+		showResult("BUY KEVIN A PHONE! And congrats on creating your own A.I. Can you build me a Kevin too?");
+end
+
+rule "Have you also promised her a puppy? - Are you being bulled right now? - Yes, Hold me."
+	when
+		Question(question == "Are you being bulled right now?", choice == "Yes, Hold me.")
+	then
+		Question question = new Question(
+			"Have you also promised her a puppy?", 
+			new String[]{
+				"No, I mean, maybe? IDK, I'm so tired.",
+				"Yes. Finally, I shall be crowned as the greatest parent ever. Bow to me!"
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+
+rule "If you say yes, can you use this as leverage to get something you want? - Are you being bulled right now? - No more then usual."
+	when
+		Question(question == "Are you being bulled right now?", choice == "No more then usual.")
+	then
+		Question question = new Question(
+			"If you say yes, can you use this as leverage to get something you want?", 
+			new String[]{
+				"Sweet. I can get a hot tub in the backyard!"
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+// End rule
+rule "END - If you say yes, can you use this as leverage to get something you want?  - Sweet. I can get a hot tub in the backyard!"
+	when
+		Question(question == "If you say yes, can you use this as leverage to get something you want?", choice == "Sweet. I can get a hot tub in the backyard!")
+	then
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+end
+
+
+rule "If you say yes, can you use this as leverage to get something you want? - Have you also promised her a puppy? - No, I mean, maybe? IDK, I'm so tired."
+	when
+		Question(question == "Have you also promised her a puppy?", choice == "No, I mean, maybe? IDK, I'm so tired.")
+	then
+			Question question = new Question(
+			"If you say yes, can you use this as leverage to get something you want?", 
+			new String[]{
+				"Sweet. I can get a hot tub in the backyard!"
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
+end
+
+// End rule
+rule "END - Have you also promised her a puppy? - Yes. Finally, I shall be crowned as the greatest parent ever. Bow to me!"
+	when
+		Question(question == "Have you also promised her a puppy?", choice == "Yes. Finally, I shall be crowned as the greatest parent ever. Bow to me!")
+	then
+		showResult("WHY ARE YOU EVEN ASKING? Get a phone, live your life and savour this beautiful time together.");
+end
+
+
+// End rule
+rule "END - Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case? - Is there an unbreakable case I can shove my kid into?"
+	when
+		Question(question == "Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case?", choice == "Is there an unbreakable case I can shove my kid into?")
+	then
+		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year.");
+end
+
+// End rule
+rule "END - Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case? - Whatever. I'm a human ATM."
+	when
+		Question(question == "Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case?", choice == "Whatever. I'm a human ATM.")
+	then
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+end
+
+rule "How will you feel when your kid drops and smashes the phone on the first day he has it? - Are you seriously shocked that he lost his phone? - This is my first day with my kid. We're still getting to know each other."
+	when
+		Question(question == "Are you seriously shocked that he lost his phone?", choice == "This is my first day with my kid. We're still getting to know each other.")
+	then
+		Question question = new Question(
+			"How will you feel when your kid drops and smashes the phone on the first day he has it?", 
+			new String[]{
+				"Now it looks like my phone. Neat!",
+				"Excuse me while I curl up in a ball and weep.",
+				"Fine. I am a husk of my former self. I feel nothing."
+				}, 
+			null
+		);
+		ask(question);
+		insert(question);
 end
 
 
