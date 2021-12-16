@@ -93,7 +93,7 @@ rule "END - Are you about to snap under the crushing weight of constant whining?
 	when
 		Question(question == "Are you about to snap under the crushing weight of constant whining?", choice == "Actually, he never brought it up. I was just thinking...")
 	then
-		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year.");
+		showResult("DON'T GET A PHONE. Why not spend that money on \n a Disney cruise? That should buy you at least a year.");
 end
 
 
@@ -266,7 +266,7 @@ rule "END - Are you bankrolling this entire enterprise, player? - No, my kid's t
 	when
 		Question(question == "Are you bankrolling this entire enterprise, player?", choice == "No, my kid's take-home pay is higher than mine, so he's paying for all of it.")
 	then
-		showResult("WHY ARE YOU EVEN ASKING? Get a phone, live your life and savour this beautiful time together.");
+		showResult("WHY ARE YOU EVEN ASKING? \n Get a phone, live your life and savour this beautiful time together.");
 end
 
 rule "Are you being bulled right now? - Do you and your kid know about bullying? - Um, yeah. Doi."
@@ -369,7 +369,7 @@ rule "END - Will you pony up and get him another phone? - What? NO. Get a job, y
 	when
 		Question(question == "Will you pony up and get him another phone?", choice == "What? NO. Get a job, you mooch.")
 	then
-		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year.");
+		showResult("DON'T GET A PHONE. Why not spend that money on \n a Disney cruise? That should buy you at least a year.");
 end
 
 
@@ -378,7 +378,7 @@ rule "END - Will you pony up and get him another phone? - Whatever. I'm a human 
 	when
 		Question(question == "Will you pony up and get him another phone?", choice == "Whatever. I'm a human ATM.")
 	then
-		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. \n It's like having kids, except phones are way cooler.");
 end
 
 
@@ -403,7 +403,7 @@ rule "END - Mmm-hmm. What will you do next year when she wants a new phone? - Wh
 	when
 		Question(question == "Mmm-hmm. What will you do next year when she wants a new phone?", choice == "Whatever. I'm a human ATM.")
 	then
-		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. \n It's like having kids, except phones are way cooler.");
 end
 
 
@@ -427,7 +427,7 @@ rule "END - Who will spend their hard-earned cash on apps, overages and other ch
 	when
 		Question(question == "Who will spend their hard-earned cash on apps, overages and other charges your kid makes 'by mistake'?", choice == "Whatever. I'm a human ATM.")
 	then
-		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. \n It's like having kids, except phones are way cooler.");
 end
 
 
@@ -485,7 +485,7 @@ rule "END - Do you have a HUMAN child? - Kinda? I have a robot I built in my bas
 	when
 		Question(question == "Do you have a HUMAN child?", choice == "Kinda? I have a robot I built in my basement. I named him Kevin.")
 	then
-		showResult("BUY KEVIN A PHONE! And congrats on creating your own A.I. Can you build me a Kevin too?");
+		showResult("BUY KEVIN A PHONE! And congrats on creating your own A.I. \n Can you build me a Kevin too?");
 end
 
 rule "Have you also promised her a puppy? - Are you being bulled right now? - Yes, Hold me."
@@ -525,7 +525,7 @@ rule "END - If you say yes, can you use this as leverage to get something you wa
 	when
 		Question(question == "If you say yes, can you use this as leverage to get something you want?", choice == "Sweet. I can get a hot tub in the backyard!")
 	then
-		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. \n It's like having kids, except phones are way cooler.");
 end
 
 
@@ -549,7 +549,7 @@ rule "END - Have you also promised her a puppy? - Yes. Finally, I shall be crown
 	when
 		Question(question == "Have you also promised her a puppy?", choice == "Yes. Finally, I shall be crowned as the greatest parent ever. Bow to me!")
 	then
-		showResult("WHY ARE YOU EVEN ASKING? Get a phone, live your life and savour this beautiful time together.");
+		showResult("WHY ARE YOU EVEN ASKING? \n Get a phone, live your life and savour this beautiful time together.");
 end
 
 
@@ -558,7 +558,7 @@ rule "END - Are you going to shell out extra money for Apple Care, extra insuran
 	when
 		Question(question == "Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case?", choice == "Is there an unbreakable case I can shove my kid into?")
 	then
-		showResult("DON'T GET A PHONE. Why not spend that money on a Disney cruise? That should buy you at least a year.");
+		showResult("DON'T GET A PHONE. Why not spend that money on \n a Disney cruise? That should buy you at least a year.");
 end
 
 // End rule
@@ -566,19 +566,19 @@ rule "END - Are you going to shell out extra money for Apple Care, extra insuran
 	when
 		Question(question == "Are you going to shell out extra money for Apple Care, extra insurance or an unbreakable case?", choice == "Whatever. I'm a human ATM.")
 	then
-		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. It's like having kids, except phones are way cooler.");
+		showResult("GET THE PHONE AND DON'T LOOK BACK! You're aware of all of the frustrations, tears and money you'll go through, but it's still worth it. \n It's like having kids, except phones are way cooler.");
 end
 
-rule "How will you feel when your kid drops and smashes the phone on the first day he has it? - Are you seriously shocked that he lost his phone? - This is my first day with my kid. We're still getting to know each other."
+rule "Will you pony up and get him another phone? - Are you seriously shocked that he lost his phone? - This is my first day with my kid. We're still getting to know each other."
 	when
 		Question(question == "Are you seriously shocked that he lost his phone?", choice == "This is my first day with my kid. We're still getting to know each other.")
 	then
 		Question question = new Question(
-			"How will you feel when your kid drops and smashes the phone on the first day he has it?", 
+			"Will you pony up and get him another phone?", 
 			new String[]{
-				"Now it looks like my phone. Neat!",
-				"Excuse me while I curl up in a ball and weep.",
-				"Fine. I am a husk of my former self. I feel nothing."
+				"Yes, but he will work it off with hard manual labour around the house until the end of days.",
+				"What? NO. Get a job, you mooch.",
+				"Whatever. I'm a human ATM."
 				}, 
 			null
 		);
