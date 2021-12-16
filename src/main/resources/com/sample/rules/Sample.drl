@@ -465,7 +465,7 @@ end
 
 rule "Will you pony up and get him another phone? - Are you seriously shocked that he lost his phone? - I guess not. Just leave me alone and let me drink."
 	when
-		Question(question == "Are you seriously shocked that he lost his phone? ", choice == "I guess not. Just leave me alone and let me drink.")
+		Question(question == "Are you seriously shocked that he lost his phone?", choice == "I guess not. Just leave me alone and let me drink.")
 	then
 		Question question = new Question(
 			"Will you pony up and get him another phone?", 
