@@ -14,17 +14,21 @@ rule "Start"
 	when
 	then
 		Question question = new Question(
-			"Which option?", 
-			new String[]{"First", "Second", "Third", "Fourth"}, 
+			"Do you wonder whether you should buy your kid a cell phone?", 
+			new String[]{"Yes, I do",
+				"I'm afraid, I have to...", 
+				"I've been forced to do so...",
+				"Yeah...", 
+				"No, I don't"}, 
 			null
 		);
 		ask(question);
 		insert(question);
 end
 
-rule "Are you about to snap under the crushing weight of constant whining? - Which option? - First"
+rule "Are you about to snap under the crushing weight of constant whining? - First question - I've been forced to do so..."
 	when
-		Question(question == "Which option?", choice == "First")
+		Question(question == "Do you wonder whether you should buy your kid a cell phone?", choice == "I've been forced to do so...")
 	then
 		Question question = new Question(
 			"Are you about to snap under the crushing weight of constant whining?", 
@@ -39,9 +43,9 @@ rule "Are you about to snap under the crushing weight of constant whining? - Whi
 		insert(question);
 end
 
-rule "Do you mind if your kid never looks up from her phone again? - Which option? - Second"
+rule "Do you mind if your kid never looks up from her phone again? - First question - I'm afraid, I have to..."
 	when
-		Question(question == "Which option?", choice == "Second")
+		Question(question == "Do you wonder whether you should buy your kid a cell phone?", choice == "I'm afraid, I have to...")
 	then
 		Question question = new Question(
 			"Do you mind if your kid never looks up from her phone again?", 
@@ -55,9 +59,9 @@ rule "Do you mind if your kid never looks up from her phone again? - Which optio
 		insert(question);
 end
 
-rule "How will you feel when your kid drops and smashes the phone on the first day he has it? - Which option? - Third"
+rule "How will you feel when your kid drops and smashes the phone on the first day he has it? - First question - Yes, I do"
 	when
-		Question(question == "Which option?", choice == "Third")
+		Question(question == "Do you wonder whether you should buy your kid a cell phone?", choice == "Yes, I do")
 	then
 		Question question = new Question(
 			"How will you feel when your kid drops and smashes the phone on the first day he has it?", 
@@ -72,9 +76,9 @@ rule "How will you feel when your kid drops and smashes the phone on the first d
 		insert(question);
 end
 
-rule "Just the one phone? - Which option? - Fourth"
+rule "Just the one phone? - First question - Yeah..."
 	when
-		Question(question == "Which option?", choice == "Fourth")
+		Question(question == "Do you wonder whether you should buy your kid a cell phone?", choice == "Yeah...")
 	then
 		Question question = new Question(
 			"Just the one phone?", 
@@ -87,6 +91,13 @@ rule "Just the one phone? - Which option? - Fourth"
 		insert(question);
 end
 
+// End rule
+rule "END - First Question - NO"
+	when
+			Question(question == "Do you wonder whether you should buy your kid a cell phone?", choice == "No, I don't")
+	then
+		showResult("So why are you here at all? Have a nice day!");
+end
 
 // End rule
 rule "END - Are you about to snap under the crushing weight of constant whining? - Actually, he never brought it up. I was just thinking..."
