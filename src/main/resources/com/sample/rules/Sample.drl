@@ -2,7 +2,6 @@ package com.sample.rules;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import org.kie.api.runtime.KieRuntime;
 
 declare Question
    question : String
@@ -613,6 +612,10 @@ function void ask(Question question) {
 	});
 	
 	JPanel panel = new JPanel();
+	GridBagConstraints constraints = new GridBagConstraints();
+	GridBagLayout layout = new GridBagLayout();
+	panel.setLayout(layout);
+	
 	ButtonGroup group = new ButtonGroup();
 	
 	// JRadioButtons store possible answers
@@ -620,22 +623,48 @@ function void ask(Question question) {
 		
 	// JLabel stores question text
 	JLabel questionLabel = new JLabel(question.getQuestion());
-	questionLabel.setBorder(BorderFactory.createEmptyBorder(0,0,15,0)); 
+	constraints.gridx = 0;
+	constraints.gridy = 1;
+	constraints.gridwidth = 20;
+	constraints.gridheight = 2;
+	constraints.fill = GridBagConstraints.NONE;
+	constraints.weightx = 0;
+	constraints.weighty = 0;
+	constraints.anchor = GridBagConstraints.CENTER;
+	constraints.insets = new Insets( 20,20,20,20 );
+	layout.setConstraints(questionLabel, constraints);
 	panel.add(questionLabel);
 	
 	for(int i = 0; i < question.getAnswers().length; i++) {
 		buttons[i] = new JRadioButton(question.getAnswers()[i]);
 		buttons[i].setActionCommand(question.getAnswers()[i]);
-		buttons[i].setBorder(BorderFactory.createEmptyBorder(5,0,5,0)); 
+		constraints.gridx = 0;
+		constraints.gridy = 5 + i;
+		constraints.gridwidth = 20;
+		constraints.gridheight = 1;
+		constraints.fill = GridBagConstraints.NONE;
+		constraints.weightx = 0;
+		constraints.weighty = 0;
+		constraints.anchor = GridBagConstraints.WEST;
+		constraints.insets = new Insets(3,20,3,20);
+		layout.setConstraints(buttons[i], constraints);
 		panel.add(buttons[i]);
 		group.add(buttons[i]);
 	}
 	buttons[0].setSelected(true);
-	buttons[buttons.length - 1].setBorder(BorderFactory.createEmptyBorder(5,0,15,0)); 
 	
 	// JButton as submit button
-	JButton submitButton = new JButton();
-	submitButton.setText("Next");
+	JButton submitButton = new JButton("Next");
+	constraints.gridx = 0;
+	constraints.gridy = 11;
+	constraints.gridwidth = 20;
+	constraints.gridheight = 1;
+	constraints.fill = GridBagConstraints.NONE;
+	constraints.weightx = 0;
+	constraints.weighty = 0;
+	constraints.anchor = GridBagConstraints.CENTER;
+	constraints.insets = new Insets(20,20,20,20);
+	layout.setConstraints(submitButton, constraints);
 	panel.add(submitButton);
 	
 	// Get selected radio button on submitButton click
@@ -648,13 +677,7 @@ function void ask(Question question) {
 		}
 	});
 	
-	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-	panel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-	
-	JPanel outerPanel = new JPanel();
-	outerPanel.add(panel);
-	
-	frame.setContentPane(outerPanel);
+	frame.setContentPane(panel);
 	frame.validate();
     frame.repaint();
     frame.pack();
